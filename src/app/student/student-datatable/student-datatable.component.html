@@ -1,34 +1,20 @@
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Date of Birth</td>
-                        <td>GPA</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Gregory</td>
-                        <td>Dodd</td>
-                        <td>05/12/1986</td>
-                        <td>2.75</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Rachel</td>
-                        <td>Dodd</td>
-                        <td>09/15/1986</td>
-                        <td>3.75</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Nathan</td>
-                        <td>Dodd</td>
-                        <td>03/14/2013</td>
-                        <td>4.0</td>
-                    </tr>
-                </tbody>
-            </table>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Date of Birth</td>
+            <td>GPA</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.firstName }}</td>
+            <td>{{ student.lastName }}</td>
+            <td>{{ student.dob }}</td>
+            <td>{{ student.gpa }}</td>
+        </tr>
+    </tbody>
+</table>

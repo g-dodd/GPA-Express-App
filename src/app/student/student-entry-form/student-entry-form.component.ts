@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentProviderService } from '../student-provider/student-provider.service';
+import { ValidDate } from '../../custom-validators/validDate.validator';
+import { ValidAlphaString } from '../../custom-validators/validAlphaString.validator';
+import { ValidGpa } from '../../custom-validators/validGpa.validator';
 
 @Component({
   selector: 'app-student-entry-form',
@@ -23,10 +26,10 @@ export class StudentEntryFormComponent implements OnInit {
 
   public createStudentEntryForm() {
     this.studentEntryForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      dob: ['', Validators.required],
-      gpa: ['', Validators.required]
+      firstName: ['', [Validators.required, ValidAlphaString]],
+      lastName: ['', [Validators.required, ValidAlphaString]],
+      dob: ['', [Validators.required, ValidDate]],
+      gpa: ['', [Validators.required, ValidGpa]]
     });
   }
 

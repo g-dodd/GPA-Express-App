@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AlertProviderService } from '../../alert-provider/alert-provider.service';
 import { StudentEntryFormComponent } from './student-entry-form.component';
+import { StudentProviderService } from '../student-provider/student-provider.service';
 
 describe('StudentEntryFormComponent', () => {
   let component: StudentEntryFormComponent;
@@ -8,7 +11,9 @@ describe('StudentEntryFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StudentEntryFormComponent ]
+      imports: [HttpModule, ReactiveFormsModule],
+      declarations: [ StudentEntryFormComponent ],
+      providers: [AlertProviderService, StudentProviderService]
     })
     .compileComponents();
   }));

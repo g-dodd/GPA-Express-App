@@ -9,18 +9,21 @@
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <div class="alert alert-success" role="alert"><span>The student has been added successfully!</span></div>
+        <div class="col-xs-12" *ngIf="alert">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" aria-label="Close" (click)="closeAlert()"><span aria-hidden="true">&times;</span></button>
+                <span>{{ alert }}</span>
+            </div>
         </div>
         <div class="col-xs-12">
-            <p>Enter the information below using the form. Once submitted, the information will populate in the table.</p>
+            <p>Enter the student information in the form. Once submitted, the information will populate in the table.</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-xs-12">
+        <div class="col-md-4 col-xs-12">
             <app-student-entry-form></app-student-entry-form>
         </div>
-        <div class="col-md-6 col-xs-12">
+        <div class="col-md-7 col-md-offset-1 col-xs-12">
             <app-student-datatable></app-student-datatable>
         </div>
     </div>

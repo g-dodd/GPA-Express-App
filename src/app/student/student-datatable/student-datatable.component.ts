@@ -20,8 +20,8 @@ export class StudentDatatableComponent implements OnInit {
   public getStudents() {
     this.studentService.getAllStudents()
       .subscribe(
-        students => {
-          this.students = students;
+        response => {
+          this.students = response.students;
         },
         error => {
           console.log('Error', error);

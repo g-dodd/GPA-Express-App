@@ -1,4 +1,5 @@
-<table class="table table-hover">
+<p *ngIf="!students.length" class="text-center">There are currently no students available.</p>
+<table *ngIf="students.length" class="table table-hover">
     <thead>
         <tr>
             <td>ID</td>

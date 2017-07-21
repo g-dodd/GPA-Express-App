@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentEntryFormComponent } from './student-entry-form/student-entry-form.component';
 import { StudentDatatableComponent } from './student-datatable/student-datatable.component';
-import { StudentProviderService } from './student-provider/student-provider.service';
 
 @NgModule({
   imports: [
@@ -12,9 +11,9 @@ import { StudentProviderService } from './student-provider/student-provider.serv
   ],
   exports: [
     StudentEntryFormComponent,
-    StudentDatatableComponent
+    StudentDatatableComponent,
   ],
   declarations: [StudentEntryFormComponent, StudentDatatableComponent],
-  providers: [StudentProviderService]
+  providers: []
 })
 export class StudentModule { }

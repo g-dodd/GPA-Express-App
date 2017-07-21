@@ -1,20 +1,35 @@
 <form [formGroup]="studentEntryForm" (ngSubmit)="onSubmit()">
-    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['firstName'].valid && studentEntryForm.controls['firstName'].touched}">
+    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['firstName'].valid && studentEntryForm.controls['firstName'].dirty}">
         <label for="exampleInputEmail1">First Name</label>
         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" formControlName="firstName">
-        
+        <div *ngIf="studentEntryForm.controls['firstName'].dirty && studentEntryForm.controls['firstName'].errors">
+            <span *ngIf="studentEntryForm.controls['firstName'].errors.required" class="text-danger help-text">First name is required.</span>
+            <span *ngIf="studentEntryForm.controls['firstName'].errors.invalidAlphaString" class="text-danger help-text">Only alpha characters are allowed.</span>
+        </div>  
     </div>
-    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['lastName'].valid && studentEntryForm.controls['lastName'].touched}">
+    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['lastName'].valid && studentEntryForm.controls['lastName'].dirty}">
         <label for="exampleInputEmail1">Last Name</label>
         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" formControlName="lastName">
+        <div *ngIf="studentEntryForm.controls['lastName'].dirty && studentEntryForm.controls['lastName'].errors">
+            <span *ngIf="studentEntryForm.controls['lastName'].errors.required" class="text-danger help-text">Last name is required.</span>
+            <span *ngIf="studentEntryForm.controls['lastName'].errors.invalidAlphaString" class="text-danger help-text">Only alpha characters are allowed.</span>
+        </div>  
     </div>
-    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['dob'].valid && studentEntryForm.controls['dob'].touched}">
+    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['dob'].valid && studentEntryForm.controls['dob'].dirty}">
         <label for="exampleInputEmail1">Date of Birth</label>
         <input type="date" class="form-control" id="exampleInputEmail1" formControlName="dob">
+        <div *ngIf="studentEntryForm.controls['dob'].dirty && studentEntryForm.controls['dob'].errors">
+            <span *ngIf="studentEntryForm.controls['dob'].errors.invalidDate" class="text-danger help-text">Please enter the date of birth in the format: YYYY-MM-DD</span>
+            <span *ngIf="studentEntryForm.controls['dob'].errors.required" class="text-danger help-text">Date of birth is required.</span>
+        </div>
     </div>
-    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['gpa'].valid && studentEntryForm.controls['gpa'].touched}">
+    <div class="form-group" [ngClass]="{'has-error': !studentEntryForm.controls['gpa'].valid && studentEntryForm.controls['gpa'].dirty}">
         <label for="exampleInputEmail1">GPA</label>
-        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="GPA"formControlName="gpa">
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="GPA" formControlName="gpa">
+        <div *ngIf="studentEntryForm.controls['gpa'].dirty && studentEntryForm.controls['gpa'].errors">
+            <span *ngIf="studentEntryForm.controls['gpa'].errors.invalidGpa" class="text-danger help-text">Please enter a valid GPA value in the format: x.xx</span>
+            <span *ngIf="studentEntryForm.controls['gpa'].errors.required" class="text-danger help-text">GPA is required.</span>
+        </div>
     </div>
     <button type="submit" class="btn btn-default" [disabled]="!studentEntryForm.valid">Submit</button>
 </form>

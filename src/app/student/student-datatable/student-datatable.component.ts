@@ -3,31 +3,40 @@ import { Student } from '../student-provider/student';
 import { StudentProviderService } from '../student-provider/student-provider.service';
 
 @Component({
-  selector: 'app-student-datatable',
-  templateUrl: './student-datatable.component.html',
-  styleUrls: ['./student-datatable.component.scss']
+    selector: 'app-student-datatable',
+    templateUrl: './student-datatable.component.html',
+    styleUrls: ['./student-datatable.component.scss']
 })
 export class StudentDatatableComponent implements OnInit {
-  students: Student[] = [];
-  constructor(
-    public studentService: StudentProviderService
-  ) { }
+    // We create a variable to hold the array of Students
+    students: Student[] = [];
 
-  ngOnInit() {
-    this.subscribeToStudentsData();
-    this.getStudents();
-  }
+    constructor(
+        // We use the student service as we will need it to get all the students from the database
+        public studentService: StudentProviderService
+    ) { }
 
-  public subscribeToStudentsData() {
-    this.studentService.students.subscribe(
-      response => {
-        this.students = response;
-      }
-    );
-  }
+    ngOnInit() {
+        // Upon initiation of the component, we subscribe to the student data...
+        this.subscribeToStudentsData();
+        // ...then call our getStudents() function to retrieve the students
+        this.getStudents();
+    }
 
-  public getStudents() {
-    this.studentService.getAllStudents();
-  }
+    // This function allows us to subscribe to the student data so that when the student subject changes,
+    // we can get the new data to populate the table
+    public subscribeToStudentsData() {
+        this.studentService.students.subscribe(
+            response => {
+                this.students = response;
+            }
+        );
+    }
+
+    // This function uses the student service's getAllStudents() function to get the latest
+    // data of students from the database
+    public getStudents() {
+        this.studentService.getAllStudents();
+    }
 
 }

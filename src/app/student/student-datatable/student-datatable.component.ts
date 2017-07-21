@@ -14,19 +14,20 @@ export class StudentDatatableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeToStudentsData();
     this.getStudents();
   }
 
+  public subscribeToStudentsData() {
+    this.studentService.students.subscribe(
+      response => {
+        this.students = response;
+      }
+    );
+  }
+
   public getStudents() {
-    this.studentService.getAllStudents()
-      .subscribe(
-        response => {
-          this.students = response.students;
-        },
-        error => {
-          console.log('Error', error);
-        }
-      );
+    this.studentService.getAllStudents();
   }
 
 }

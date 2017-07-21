@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Student } from './student';
+import { AlertProviderService } from '../../alert-provider/alert-provider.service';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,7 +12,8 @@ export class StudentProviderService {
   public students: BehaviorSubject<Array<Student>> = new BehaviorSubject([]);
 
   constructor(
-    private http: Http
+    private http: Http,
+    private alertService: AlertProviderService
   ) { }
 
   public getAllStudents(): void {
@@ -34,6 +36,7 @@ export class StudentProviderService {
       .map((res: Response) => res.json())
       .subscribe(
         response => {
+          this.alertService.pushAlert('The student has been added successfully!');
           this.studentData.push(response.student);
           this.students.next(this.studentData);
         }
